@@ -28,8 +28,9 @@ export default function Funcionarios() {
   };
 
   const handleEdit = (emp) => {
-    alert('Editar: ' + emp.nomeCompleto);
+    navigate(`/funcionarios/${emp.id}/editar`);
   };
+
 
   const handleAdd = () => {
     navigate('/funcionarios/novo');

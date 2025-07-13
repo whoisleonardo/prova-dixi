@@ -201,6 +201,35 @@
   text-align: right;
 }
 
+.success-message {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.success-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 700px) {
   .form-funcionario-container {
     padding: 8px 2px;

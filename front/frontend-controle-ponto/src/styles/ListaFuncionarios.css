@@ -56,7 +56,7 @@
   font-size: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   transition: background 0.2s;
 }
 
@@ -65,9 +65,11 @@
 }
 
 .filters button svg {
-  color: #fff;
-  stroke: currentColor;
-  margin-right: 6px;
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+  stroke: none;
+  margin: 0;
   display: inline-block;
   vertical-align: middle;
 }
@@ -78,7 +80,7 @@
   font-weight: 700;
   margin-bottom: 24px;
   margin-top: 32px;
-  margin-left: 364px;
+  text-align: center;
 }
 
 table {
@@ -87,10 +89,11 @@ table {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(49,120,198,0.04);
+  box-shadow: 0 2px 8px rgba(49, 120, 198, 0.04);
 }
 
-th, td {
+th,
+td {
   padding: 14px 10px;
   text-align: left;
   vertical-align: middle;
@@ -123,35 +126,87 @@ button[title="Editar funcionário"] {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 22px;
-  color: #3178c6;
-  transition: color 0.2s;
-  padding: 4px 8px;
+  padding: 4px;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+button[title="Editar funcionário"] svg {
+  width: 18px;
+  height: 18px;
+  fill: #3178c6;
+  transition: fill 0.2s;
+}
+
+button[title="Editar funcionário"]:hover svg {
+  fill: #255a99;
 }
 
 button[title="Editar funcionário"]:hover {
-  color: #255a99;
   background: #eaf1fb;
   border-radius: 4px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  gap: 16px;
+}
+
+.pagination button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #222;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.pagination button:hover:not(.disabled) {
+  color: #3178c6;
+}
+
+.pagination button.disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+
+.pagination .page-number {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3178c6;
+  padding-bottom: 2px;
+  border-bottom: 2px solid #3178c6;
+}
+
 
 @media (max-width: 900px) {
   .employee-list-container {
     padding: 12px 2px;
     max-width: 100vw;
   }
+
   .filters input {
     min-width: 100px;
     font-size: 13px;
   }
+
   .filters button {
     font-size: 13px;
     padding: 7px 10px;
   }
-  th, td {
+
+  th,
+  td {
     font-size: 13px;
     padding: 6px 4px;
+  }
+
+  .filters button svg {
+    width: 16px;
+    height: 16px;
   }
 }

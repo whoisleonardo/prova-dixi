@@ -14,10 +14,10 @@ public class FuncionarioDTO {
     @NotBlank(message = "Nome completo é obrigatório")
     private String nomeCompleto;
 
-    @Pattern(regexp = "(^$|\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2})", message = "CPF deve estar no formato XXX.XXX.XXX-XX")
+    @Pattern(regexp = "(^$|\\d{11}|\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2})", message = "CPF inválido")
     private String cpf;
 
-    @Pattern(regexp = "(^$|\\d{3}\\.\\d{5}\\.\\d{2}-\\d{1})", message = "PIS deve estar no formato XXX.XXXXX.XX-X")
+    @Pattern(regexp = "(^$|\\d{11}|\\d{3}\\.\\d{5}\\.\\d{2}-\\d{1})", message = "PIS inválido")
     private String pis;
 
     @NotBlank(message = "Matrícula é obrigatória")

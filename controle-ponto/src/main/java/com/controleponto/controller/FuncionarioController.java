@@ -43,4 +43,18 @@ public class FuncionarioController {
         funcionarioService.inativar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Funcionario> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(funcionarioService.buscarPorId(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Funcionario> editar(
+            @PathVariable Long id,
+            @Valid @RequestBody FuncionarioDTO dto
+    ) {
+        Funcionario atualizado = funcionarioService.editar(id, dto);
+        return ResponseEntity.ok(atualizado);
+    }
 }

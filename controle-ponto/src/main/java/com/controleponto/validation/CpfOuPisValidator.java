@@ -8,13 +8,19 @@ public class CpfOuPisValidator implements ConstraintValidator<CpfOuPis, Funciona
 
     @Override
     public boolean isValid(FuncionarioDTO dto, ConstraintValidatorContext context) {
-        if (dto == null) {
+        boolean cpfValido = dto.getCpf() != null && !dto.getCpf().isBlank();
+        boolean pisValido = dto.getPis() != null && !dto.getPis().isBlank();
+
+        if (cpfValido || pisValido) {
             return true;
         }
 
-        boolean cpfPreenchido = dto.getCpf() != null && !dto.getCpf().trim().isEmpty();
-        boolean pisPreenchido = dto.getPis() != null && !dto.getPis().trim().isEmpty();
+        context.disableDefaultConstraintViolation();
+        context
+                .buildConstraintViolationWithTemplate("Informe ao menos CPF ou PIS")
+                .addPropertyNode("cpf")
+                .addConstraintViolation();
 
-        return cpfPreenchido || pisPreenchido;
+        return false;
     }
 }

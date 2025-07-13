@@ -63,4 +63,38 @@ public class FuncionarioService {
         }
         return funcionarioRepository.findAll();
     }
+
+    public Funcionario buscarPorId(Long id) {
+        return funcionarioRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("Funcionário não encontrado"));
+    }
+
+    public Funcionario editar(Long id, FuncionarioDTO dto) {
+        Funcionario funcionarioExistente = funcionarioRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("Funcionário não encontrado"));
+
+        String novoCpf = (dto.getCpf() != null && !dto.getCpf().isBlank()) ? dto.getCpf().replaceAll("\\D", "") : null;
+        String novoPis = (dto.getPis() != null && !dto.getPis().isBlank()) ? dto.getPis().replaceAll("\\D", "") : null;
+
+        if (novoCpf != null && !novoCpf.equals(funcionarioExistente.getCpf()) && funcionarioRepository.existsByCpf(novoCpf)) {
+            throw new BusinessException("CPF já cadastrado.");
+        }
+
+        if (novoPis != null && !novoPis.equals(funcionarioExistente.getPis()) && funcionarioRepository.existsByPis(novoPis)) {
+            throw new BusinessException("PIS já cadastrado.");
+        }
+
+        if (!dto.getMatricula().equals(funcionarioExistente.getMatricula()) && funcionarioRepository.existsByMatricula(dto.getMatricula())) {
+            throw new BusinessException("Matrícula já cadastrada.");
+        }
+
+        funcionarioExistente.setNomeCompleto(dto.getNomeCompleto());
+        funcionarioExistente.setCpf(novoCpf);
+        funcionarioExistente.setPis(novoPis);
+        funcionarioExistente.setMatricula(dto.getMatricula());
+        funcionarioExistente.setDataAdmissao(dto.getDataAdmissao());
+        funcionarioExistente.setSituacaoCadastro(dto.getSituacaoCadastro());
+
+        return funcionarioRepository.save(funcionarioExistente);
+    }
 }
