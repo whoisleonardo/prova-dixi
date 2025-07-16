@@ -11,6 +11,25 @@ CREATE TABLE funcionario (
     situacao_cadastro VARCHAR(10) NOT NULL
 );
 
+CREATE TABLE marcacao (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    data DATE NOT NULL,
+    hora TIME NOT NULL,
+    pis VARCHAR(13),
+    cpf VARCHAR(13),
+    tipo_registro VARCHAR(10),
+    origem_arquivo VARCHAR(255),
+    apropriada BOOLEAN NOT NULL,
+    motivo_rejeicao VARCHAR(255),
+    funcionario_id BIGINT,
+    FOREIGN KEY (funcionario_id) REFERENCES funcionario(id)
+);
+
 TRUNCATE TABLE funcionario;
+TRUNCATE TABLE marcacao;
 
 select * from funcionario;
+select * from marcacao;
+
+
+drop table marcacao;

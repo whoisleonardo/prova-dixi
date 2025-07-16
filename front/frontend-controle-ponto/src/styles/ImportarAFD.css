@@ -1,0 +1,152 @@
+body{
+  overflow: hidden;
+}
+
+.importafd-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.importafd-main {
+  flex: 1;
+  padding: 20px;
+  margin-left: 130px; 
+  overflow-y: auto;
+}
+
+.page-title {
+  color: #3178c6;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.importafd-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.importafd-file-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.importafd-file-label {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.importafd-file-label svg {
+  width: 16px;
+  height: 16px;
+}
+
+.importafd-file-input {
+  display: none;
+}
+
+.importafd-import-button {
+  background-color: #3178c6;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.importafd-import-button:hover:not(:disabled) {
+  background-color: #255ea0;
+}
+
+.importafd-import-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.importafd-import-button svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+}
+
+.importafd-result {
+  display: flex;
+  gap: 24px;
+  margin: 16px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.importafd-success {
+  color: green;
+}
+
+.importafd-failure {
+  color: red;
+}
+
+.importafd-error {
+  color: red;
+  margin-top: 10px;
+}
+
+.importafd-nao-importadas h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #3178c6;
+}
+
+.importafd-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.importafd-table th,
+.importafd-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.importafd-table th {
+  background-color: #3178c6;
+  color: #f7fafc;
+  font-weight: 600;
+}
+
+.importafd-scroll {
+  max-height: 370px;
+  overflow-y: auto;
+  border-radius: 6px;
+}
+
+.importafd-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.importafd-scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.importafd-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}

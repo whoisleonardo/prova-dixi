@@ -1,0 +1,95 @@
+.sidebar {
+  width: 200px;
+  background-color: #3178c6; 
+  color: #f7fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 130px;
+}
+
+.sidebar .logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #f7fafc;
+  margin-bottom: 40px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: #f7fafc;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.sidebar nav a .icon-wrapper {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 6px;
+}
+
+.sidebar nav a svg {
+  fill: #f7fafc; 
+  width: 28px;
+  height: 28px;
+  transition: fill 0.3s ease;
+}
+
+.sidebar nav a span {
+  font-size: 12px;
+  margin-top: 2px;
+  transition: color 0.3s ease;
+}
+
+.sidebar nav a.active,
+.sidebar nav a:hover {
+  background-color: #255ea0; 
+  color: #fff;
+}
+
+.sidebar nav a.active svg,
+.sidebar nav a:hover svg {
+  fill: #ffffff;
+}
+
+.sidebar nav a.active span,
+.sidebar nav a:hover span {
+  color: #ffffff;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    padding-top: 10px;
+  }
+
+  .sidebar .logo {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar nav a span {
+    display: none;
+  }
+}
