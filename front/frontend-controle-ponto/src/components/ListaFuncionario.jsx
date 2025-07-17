@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/ListaFuncionarios.css';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from '../components/Sidebar'; // Import da Sidebar
+import Sidebar from '../components/Sidebar'; 
 
 const initialFilters = {
   name: '',

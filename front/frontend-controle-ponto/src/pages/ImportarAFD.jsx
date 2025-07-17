@@ -52,7 +52,7 @@ export default function ImportarAFD() {
         <h1 className="page-title">Importação AFD</h1>
 
         <div className="employee-list-container importafd-container">
-          {/* Seção Seleção de Arquivo e Botões */}
+          {}
           <div className="importafd-file-section">
             <label htmlFor="fileUpload" className="importafd-file-label">
               Clique para selecionar um arquivo

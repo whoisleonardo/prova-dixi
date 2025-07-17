@@ -24,12 +24,3 @@ CREATE TABLE marcacao (
     funcionario_id BIGINT,
     FOREIGN KEY (funcionario_id) REFERENCES funcionario(id)
 );
-
-TRUNCATE TABLE funcionario;
-TRUNCATE TABLE marcacao;
-
-select * from funcionario;
-select * from marcacao;
-
-
-drop table marcacao;

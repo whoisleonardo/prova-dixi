@@ -42,22 +42,15 @@ public class AfdService {
             while ((linha = br.readLine()) != null) {
                 linhaNum++;
 
-                if (linha.length() < 22) {
-                    continue;
-                }
+                if (linha.length() < 22) continue;
 
-                if (linha.matches("^\\d{9}3.*") && !linha.contains("T")) {
-                    try {
+                try {
+                    if (linha.matches("^\\d{9}3.*") && !linha.contains("T")) {
                         processarLinhaLayout1510(linha, apropriadas, naoApropriadas, file.getOriginalFilename());
-                    } catch (Exception e) {
-                        // erro ao processar layout 1510
-                    }
-                } else if (linha.matches("^\\d{9}3.*T.*") || linha.contains("T") || linha.contains("-03")) {
-                    try {
+                    } else if (linha.matches("^\\d{9}3.*T.*") || linha.contains("T") || linha.contains("-03")) {
                         processarLinhaLayout671(linha, apropriadas, naoApropriadas, file.getOriginalFilename());
-                    } catch (Exception e) {
-                        // erro ao processar layout 671
                     }
+                } catch (Exception e) {
                 }
             }
         }
@@ -69,44 +62,32 @@ public class AfdService {
     }
 
     private void processarLinhaLayout1510(String linha, List<MarcacaoPontoDTO> apropriadas, List<MarcacaoPontoDTO> naoApropriadas, String origemArquivo) {
-        try {
-            String dataStr = linha.substring(10, 18);
-            String horaStr = linha.substring(18, 22);
-            String pis = linha.substring(22).replaceAll("\\D", "").trim();
+        String dataStr = linha.substring(10, 18);
+        String horaStr = linha.substring(18, 22);
+        String identificador = linha.substring(22).replaceAll("\\D", "").trim();
 
-            if (pis.length() < 11 || pis.length() > 14) {
-                throw new IllegalArgumentException("PIS com tamanho inválido: " + pis);
-            }
+        LocalDate data = LocalDate.parse(dataStr, dataFormatter1510);
+        LocalTime hora = LocalTime.parse(horaStr, horaFormatter1510);
 
-            LocalDate data = LocalDate.parse(dataStr, dataFormatter1510);
-            LocalTime hora = LocalTime.parse(horaStr, horaFormatter1510);
-
-            processarMarcacao(data, hora, pis, "", "3", origemArquivo, apropriadas, naoApropriadas);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao processar linha layout 1510: " + e.getMessage(), e);
-        }
+        processarMarcacao(data, hora, identificador, identificador, "3", origemArquivo, apropriadas, naoApropriadas);
     }
 
     private void processarLinhaLayout671(String linha, List<MarcacaoPontoDTO> apropriadas, List<MarcacaoPontoDTO> naoApropriadas, String origemArquivo) {
-        try {
-            String tipoRegistro = linha.substring(9, 10);
-            String dataHoraStr = linha.substring(10, 35);
+        String tipoRegistro = linha.substring(9, 10);
+        String dataHoraStr = linha.substring(10, 35);
 
-            if (dataHoraStr.length() == 25 && dataHoraStr.charAt(22) != ':') {
-                dataHoraStr = dataHoraStr.substring(0, 22) + ":" + dataHoraStr.substring(22);
-            }
-
-            OffsetDateTime odt = OffsetDateTime.parse(dataHoraStr, isoOffsetFormatter);
-            LocalDate data = odt.toLocalDate();
-            LocalTime hora = odt.toLocalTime();
-
-            String pis = linha.substring(35, 46).replaceAll("\\D", "").trim();
-            String cpf = (linha.length() >= 57) ? linha.substring(46, 57).replaceAll("\\D", "").trim() : "";
-
-            processarMarcacao(data, hora, pis, cpf, tipoRegistro, origemArquivo, apropriadas, naoApropriadas);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao processar linha layout 671: " + e.getMessage(), e);
+        if (dataHoraStr.length() == 25 && dataHoraStr.charAt(22) != ':') {
+            dataHoraStr = dataHoraStr.substring(0, 22) + ":" + dataHoraStr.substring(22);
         }
+
+        OffsetDateTime odt = OffsetDateTime.parse(dataHoraStr, isoOffsetFormatter);
+        LocalDate data = odt.toLocalDate();
+        LocalTime hora = odt.toLocalTime();
+
+        String pis = linha.substring(35, 46).replaceAll("\\D", "").trim();
+        String cpf = (linha.length() >= 57) ? linha.substring(46, 57).replaceAll("\\D", "").trim() : pis;
+
+        processarMarcacao(data, hora, pis, cpf, tipoRegistro, origemArquivo, apropriadas, naoApropriadas);
     }
 
     private void processarMarcacao(LocalDate data, LocalTime hora, String pis, String cpf,
@@ -122,7 +103,7 @@ public class AfdService {
         Optional<Funcionario> funcionarioOpt = funcionarioRepository.findByPis(pis)
                 .stream().filter(f -> "Ativo".equalsIgnoreCase(f.getSituacaoCadastro())).findFirst();
 
-        if (!funcionarioOpt.isPresent() && !cpf.isEmpty()) {
+        if (!funcionarioOpt.isPresent()) {
             funcionarioOpt = funcionarioRepository.findByCpf(cpf)
                     .stream().filter(f -> "Ativo".equalsIgnoreCase(f.getSituacaoCadastro())).findFirst();
         }

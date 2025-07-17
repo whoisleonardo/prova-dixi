@@ -1,0 +1,127 @@
+body {
+  overflow: hidden;
+  margin-left: 130px;
+}
+
+.espelho-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.espelho-main {
+  flex: 1;
+  padding: 20px;
+  margin-left: 130px; 
+  overflow-y: auto;
+}
+
+.page-title {
+  color: #3178c6;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.espelho-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.filtros {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filtros label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+}
+
+.filtros select,
+.filtros input[type="date"] {
+  margin-top: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+.filtros button {
+  background-color: #3178c6;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  height: 40px;
+  align-self: flex-end;
+}
+
+.filtros button:hover:not(:disabled) {
+  background-color: #255ea0;
+}
+
+.filtros button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.erro-msg {
+  color: red;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.espelho-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.espelho-table th,
+.espelho-table td {
+  padding: 12px 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: 14px;
+}
+
+.espelho-table th {
+  background-color: #3178c6;
+  color: #f7fafc;
+  font-weight: 600;
+}
+
+.resultado-espelho {
+  max-height: 480px;
+  overflow-y: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.resultado-espelho::-webkit-scrollbar {
+  width: 8px;
+}
+
+.resultado-espelho::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.resultado-espelho::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.espelho-main p {
+  font-size: 16px;
+  color: #666;
+  margin-top: 20px;
+}

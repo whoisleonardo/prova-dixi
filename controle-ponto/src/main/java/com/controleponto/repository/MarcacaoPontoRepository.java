@@ -16,4 +16,6 @@ public interface MarcacaoPontoRepository extends JpaRepository<MarcacaoPonto, Lo
 
     List<MarcacaoPonto> findByApropriada(boolean apropriada);
 
+    List<MarcacaoPonto> findByFuncionarioIdAndDataBetweenAndApropriadaTrue(Long funcionarioId, LocalDate dataInicio, LocalDate dataFim);
+
 }
