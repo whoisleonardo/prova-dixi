@@ -54,7 +54,7 @@ spring.jpa.hibernate.ddl-auto=update
 3. Navegue até a pasta do backend:
 
 ```
-cd backend
+cd controle-ponto
 ```
 
 4. Compile e execute a aplicação:
