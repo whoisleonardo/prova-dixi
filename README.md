@@ -72,7 +72,7 @@ mvn clean spring-boot:run
 1. Navegue até a pasta do frontend:
 
 ```
-cd frontend
+cd front\frontend-controle-ponto
 ```
 
 2. Instale as dependências:
